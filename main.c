@@ -8,13 +8,22 @@ int main() {
     char alpha[26];
     char word[64];
     int x;
-    
-    printf("Enter a word: ");
+   
+
+    // validation:
+    printf("Enter a word (lowercase): ");
     fgets(word, sizeof(word), stdin);
     printf("%s\n", word);
-    if (word < 65 || word > 90) {
-        printf("Invalid input\n");
-    }
+    for (int i = 0; i < strlen(word); i++) {
+        if (word[i] < tolower('A') || word[i] > tolower('Z')) {
+            printf("Invalid input, enter new word: ");
+            fgets(word, sizeof(word), stdin);
+        } else {
+            continue;
+        }
+
+    } 
+    printf("Plaintext: %s\n", word);
 
     printf("How much do you want to shift? Number: ");
     scanf("%d", &x);
