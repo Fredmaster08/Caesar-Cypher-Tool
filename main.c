@@ -3,44 +3,42 @@
 #include <ctype.h>
 #include <string.h>
 
-int main() {
+#define MAX_WORD_LEN 256
+
+int main(int argc, char** argv) {
+
+    printf("%d\n%s\n", argc, argv[0]);
 
     char alpha[26];
     char word[64];
-    int x;
+    char output[MAX_WORD_LEN];
+    int shift;
    
 
     // validation:
     printf("Enter a word (lowercase): ");
     fgets(word, sizeof(word), stdin);
-    printf("%s\n", word);
-    for (int i = 0; i < strlen(word); i++) {
-        if (word[i] < tolower('A') || word[i] > tolower('Z')) {
-            printf("Invalid input, enter new word: ");
-            fgets(word, sizeof(word), stdin);
-        } else {
-            continue;
-        }
 
-    } 
     printf("Plaintext: %s\n", word);
 
     printf("How much do you want to shift? Number: ");
-    scanf("%d", &x);
+    scanf("%d", &shift);
 
-    for (int i = 0; i < 26; i++) {
-        alpha[i] = 'A' + i;
-        alpha[i] = alpha[i] + x;
-        if (alpha[i] > 'Z') {
-            alpha[i] = 'A' + (alpha[i] - 91);
+    if (argc == true) {
+        for (int i = 0; i < strlen(word) - 1; i++) {
+            char c = toupper(word[i]);
+            c += shift;
+
+            if (c > 'Z') {
+                c = 'A' + (c - 91);
+            }
+            else if (c < 'A') {
+                c = 'Z' + (c - 64);
+            }
+            output[i] = c;
         }
-        else if (alpha[i] < 'A') {
-            alpha[i] = 'Z' + (alpha[i] - 64);
-        }
-        printf("%d: %c\n", i, alpha[i]);
+        printf("Encryption: %s\n", output);
     }
-
-       
-
-    return 0;
+           return 0;
 }
+
