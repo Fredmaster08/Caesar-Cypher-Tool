@@ -7,23 +7,23 @@
 
 int main(int argc, char** argv) {
 
-    char input[MAX_WORD_LEN];
+    char alpha[26];
+    char word[64];
     char output[MAX_WORD_LEN];
     int shift;
    
 
     // validation:
     printf("Enter a word: ");
-    fgets(word, sizeof(input), stdin);
-    fflush(stdin);
+    fgets(word, sizeof(word), stdin);
 
-    printf("Plaintext: %s\n", input);
+    printf("Plaintext: %s\n", word);
 
-    printf("Shift: ");
+    printf("How much do you want to shift? Number: ");
     scanf("%d", &shift);
 
-    for (int i = 0; i < strlen(input) - 1; i++) {
-        char c = toupper(input[i]);
+    for (int i = 0; i < strlen(word) - 1; i++) {
+        char c = toupper(word[i]);
         c += shift;
 
         if (c > 'Z') {
@@ -36,6 +36,11 @@ int main(int argc, char** argv) {
     }
     printf("Encryption: %s\n", output);
 
-    return 0;
+    for (int i = 0; i < strlen(output); i++) {
+       
+        
+    }
+
+           return 0;
 }
 

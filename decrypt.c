@@ -5,29 +5,27 @@
 
 #define MAX_WORD_LEN 256
 
-int main(int argc, char** argv) {
+int main () {
 
     char input[MAX_WORD_LEN];
     char output[MAX_WORD_LEN];
     int shift;
-   
 
-    // validation:
-    printf("Enter a word: ");
-    fgets(word, sizeof(input), stdin);
+    printf("Enter an Encryption: ");
+    fgets(input, sizeof(input), stdin);
     fflush(stdin);
 
-    printf("Plaintext: %s\n", input);
+    printf("Encryption: %s\n", input);
 
     printf("Shift: ");
     scanf("%d", &shift);
 
-    for (int i = 0; i < strlen(input) - 1; i++) {
+    for (int i = 0; i < strlen(input); i++) {
         char c = toupper(input[i]);
         c += shift;
-
+        
         if (c > 'Z') {
-            c = 'A' + (c - 91);
+            c = 'Z' + (c - 91);
         }
         else if (c < 'A') {
             c = 'Z' + (c - 64);
@@ -38,4 +36,3 @@ int main(int argc, char** argv) {
 
     return 0;
 }
-
