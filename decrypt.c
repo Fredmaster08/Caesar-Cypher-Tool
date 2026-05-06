@@ -11,18 +11,24 @@ int main () {
     char output[MAX_WORD_LEN];
     int shift;
 
+    printf("\n---SECRET DATA---\n\n");
+
     printf("Enter an Encryption: ");
     fgets(input, sizeof(input), stdin);
     fflush(stdin);
+   
+    for (int i = 0; i < strlen(input); i++) {
+        char c = toupper(input[i]);
+        output[i] = c;
+    }
+    printf("Encryption: %s\n", output);
 
-    printf("Encryption: %s\n", input);
-
-    printf("Shift: ");
-    scanf("%d", &shift);
+    printf("Magic Number (that your secret friend told ya): ");
+    scanf("%d", &shift);   
 
     for (int i = 0; i < strlen(input); i++) {
         char c = toupper(input[i]);
-        c += shift;
+        c += (-shift);
         
         if (c > 'Z') {
             c = 'Z' + (c - 91);
@@ -32,7 +38,7 @@ int main () {
         }
         output[i] = c;
     }
-    printf("Encryption: %s\n", output);
+    printf("Decryption: %s\n", output);
 
     return 0;
 }
